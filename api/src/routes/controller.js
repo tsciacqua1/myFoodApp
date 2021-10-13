@@ -3,7 +3,7 @@ const axios = require('axios')
 const {
     YOUR_API_KEY,
   } = process.env;
-
+const { Recipe } = require('../db.js')
 // get recipes from API
 const getRecipes = async (req, res) => {
         try {
@@ -42,8 +42,29 @@ const getRecipeInfo = async (req, res) => {
         console.error(error.message)
     }
 }
-// &addRecipeInformation=true
+
+// post new recipe
+const postRecipe = async (req, res) => {
+    try {
+        const { name, summary, score, healthylevel, steps } = req.body
+        if(name && summary && score && healthylevel && steps){
+            const response = await Recipe.create({
+                id: 56,
+                name,
+                summary, 
+                score, 
+                healthylevel, 
+                steps
+            })
+            res.status(200).json(response)
+        }
+    } catch (error) {
+        res.send(error)
+    }
+}
+
 module.exports = {
     getRecipes,
-    getRecipeInfo
+    getRecipeInfo,
+    postRecipe
 }
