@@ -1,0 +1,22 @@
+.menu{
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+}
+
+.navbar{
+    margin-left: 12px;
+    text-decoration: none;
+}
+
+#home{
+    text-decoration: none;
+}
+#newrecipe{
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.searchbar{
+    margin-left: 25cm;
+}
