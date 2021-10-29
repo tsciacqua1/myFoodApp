@@ -1,22 +1,35 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import Filters from '../Filters/Filters';
-import './NavBar.css'
+import './NavBar.scss'
 
 const NavBar = () => {
 
     return (
         <div>
-            <nav className="menu">
-                    <div className='navbar'>
-                        <Link to='/home' id='home'>Home</Link>
-                        <Link to='/newrecipe' id='newrecipe'>Create Recipe</Link>
+            {/* <div className='navigation'>
+                <hr className='line' />
+                    <div class="container">
+                        <nav class="menu">
+                            <ul class="main-menu">
+                                <li class="active"><i class="fa fa-home"></i><a href="/home/!">Home</a></li>
+                                <li><i class="fa fa-user"></i><a href="/newrecipe">CreateRecipe</a></li>
+                            </ul>
+                        </nav>
                     </div>
-                    <div><Filters/></div>
-                    {/* <div className='searchbar'><SearchBar/></div> */}
-            </nav>
+            </div> */}
+            <div id="wrapper">
+                <div id="top"></div>
+                <div id="middle"></div>
+                <div id="bottom"></div>
+            </div>
+            <div className="container">
+                <nav className='navbar'>
+                    <a href="/home/!">Home</a>
+                    <a href="/newrecipe">Create Recipe</a>
+                    <div class="animation start-home"></div>
+                </nav>
+            </div>
+            <hr class="accessory"></hr>
         </div>
-        
     )
 }
 

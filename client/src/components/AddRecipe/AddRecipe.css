@@ -1,0 +1,122 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: #e2dedb;
+}
+
+header {
+  position: relative;
+  margin: 100px 0 25px 0;
+  font-size: 2.3em;
+  text-align: center;
+  letter-spacing: 7px;
+  color: #b3aca7;
+}
+
+#form {
+  position: relative;
+  width: 500px;
+  margin: 50px auto 100px auto;
+}
+
+input {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  width: 470px;
+  height: 50px;
+  padding: 0px 15px 0px 15px;
+  
+  background: transparent;
+  outline: none;
+  color: #726659;
+  
+  border: solid 1px #b3aca7;
+  border-bottom: none;
+  
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+
+
+textarea {
+  width: 470px;
+  max-width: 470px;
+  height: 110px;
+  max-height: 110px;
+  padding: 15px;
+  
+  background: transparent;
+  outline: none;
+  
+  color: #726659;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  
+  border: solid 1px #b3aca7;
+  
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+
+#submit {
+  position: relative;
+  display: block;
+  width: 400px;
+  top: 1cm;
+  left: 1.5cm;
+
+  margin: -5px 0px 0px 0px;
+  
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  color: #020202;
+  
+  outline:none;
+  cursor: pointer;
+  
+  border: solid 1px #b3aca7;
+}
+
+#title{
+    padding: 0 0 0 0;
+}
+
+#title::placeholder{
+    color: #7a604b;
+    text-align: center;
+    transform: scale(0.5);
+}
+
+#submit:hover {
+  color: #ff0088;
+}
+
+.diets{
+  display: flex;
+  position: absolute;
+}
+
+.diets input{
+  position: relative;
+  right: -5cm;
+  top: -2.5cm;
+  transform: scale(0.5);
+}
+
+.diets label{
+  position: relative;
+  right: -12cm;
+  top: -3.5cm;
+  transform: scale(0.5);
+}
+
+.selection{
+  position: relative;
+  display: block;
+  margin-bottom: -0.5cm;
+}

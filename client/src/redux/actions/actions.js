@@ -8,6 +8,11 @@ export const getRecipes = () => {
                 type: 'GET_RECIPES',
                 payload: data.data.results
             })
+            const data2 = await axios.get('/userrecipes')
+            dispatch({
+                type: 'GET_USER_RECIPES',
+                payload: data2.data
+            })
         } catch (error) {
             console.error(error)
         }
@@ -15,16 +20,16 @@ export const getRecipes = () => {
 }
 
 export const getRecipeByName = (name) => {
-    return async (dispatch) => {
-        try {
-            const data = await axios.get(`/recipes/?name=${name}`)
-            dispatch({
-                type: 'GET_RECIPE_BY_NAME',
-                payload: data.data
-            })
-        } catch (error) {
-            console.error(error)
-        }
+    return {
+        type: 'GET_RECIPE_BY_NAME',
+        payload: name
+    }
+}
+
+export const getDbRecipes = (name) => {
+    return {
+        type: 'GET_DB_RECIPES',
+        payload: name
     }
 }
 
@@ -71,30 +76,16 @@ export const postRecipe = (recipe) => {
 }
 
 export const alphFilter = (value) => {
-    return async dispatch => {
-        try {
-            const data = await axios.get(`/allrecipes?alph=${value}`)
-            dispatch({
-                type: 'ALPH_FILTER',
-                payload: data.data
-            })
-        } catch (error) {
-            console.error(error)
-        }
+    return {
+        type: 'ALPH_FILTER',
+        payload: value
     }
 }
 
 export const scoreFilter = (value) => {
-    return async dispatch => {
-        try {
-            const data = await axios.get(`/allrecipes?score=${value}`)
-            dispatch({
-                type: 'SCORE_FILTER',
-                payload: data.data
-            })
-        } catch (error) {
-            console.error(error)
-        }
+    return {
+        type: 'SCORE_FILTER',
+        payload: value
     }
 }
 
@@ -111,3 +102,5 @@ export const dietFilter = (value) => {
         }
     }   
 }
+
+

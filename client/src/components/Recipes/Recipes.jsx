@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getRecipeByName } from '../../redux/actions/actions'
+import { getDbRecipes, getRecipeByName } from '../../redux/actions/actions'
 import Recipe from '../Recipe/Recipe'
 import './Recipes.css'
 import pacman from '../../img/pacman.gif'
@@ -44,6 +44,7 @@ const Recipes = () => {
             const apiCall = async () => {
                 setLoading(true)
                 await dispatch(getRecipeByName(term))
+                await dispatch(getDbRecipes(term))
                 setLoading(false)
             }
             apiCall()
@@ -58,13 +59,22 @@ const Recipes = () => {
 
     return (
         <div>
-            <div>
-            <form onSubmit={handleSubmit}>
-                <input className='search' type="text" placeholder='Search Recipe' ref={inputRef}/>
-                <button type="submit">Search</button>
-            </form>
-            
-            </div>
+            <div id="cover">
+                <form method="get" action="" onSubmit={handleSubmit}>
+                    <div class="tb">
+                    <div class="td">
+                        <input type="text" placeholder="Search Recipe" ref={inputRef} required/>
+                    </div>
+                    <div class="td" id="s-cover">
+                        <button type="submit">
+                        <div id="s-circle"></div>
+                        <span></span>
+                        </button>
+                    </div>
+                    </div>
+                </form>
+                </div>
+                
             {searching ? (<div className='recipecard'>
             {currentSearchedRecipes?.map((el) => {
                 return (
@@ -77,7 +87,7 @@ const Recipes = () => {
         (<div className='recipecard'>
             {currentRecipes?.map((el) => {
                 return (
-                    <Recipe data={el} key={el.id}/>
+                    <Recipe data={el} key={el.id} className='recipe'/>
                 )
             })
             }

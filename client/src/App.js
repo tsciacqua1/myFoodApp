@@ -12,7 +12,7 @@ function App() {
 
   RecipesLoader()
   DietsLoader()
-
+ 
   return (
     <>
       <Switch>

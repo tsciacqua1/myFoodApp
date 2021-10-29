@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import './SearchedPagination.css'
 
 const SearchedPagination = (props) => {
 
@@ -14,17 +15,19 @@ const SearchedPagination = (props) => {
 
     return (
         <div>
-            <ul>
-                {pageNumbers.map(el => {
-                    return (
-                        <li key={el}>
-                            <a href="!#" onClick={() => paginate(el)}>
-                                {el}
-                            </a>
-                        </li>
-                    )
-                })}
-            </ul>
+            <div className='pagination'>
+                <ul className='pageNumbers'>
+                    {pageNumbers.map(el => {
+                        return (
+                            <li key={el} className='number'>
+                                <a href="!#" onClick={() => paginate(el)}>
+                                    {el}
+                                </a>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
         </div>
     )
 }

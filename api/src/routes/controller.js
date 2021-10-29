@@ -6,19 +6,8 @@ const { Recipe, Diet } = require('../db.js')
 //get all recipes
 const getAllRecipes = async (req, res) => {
     try {
-        const { alph, score, diet } = req.query
+        const { diet } = req.query
         const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`)
-        
-        if(alph) {
-            let data = response.data.results.sort((a, b) => a.title.localeCompare(b.title))
-            if(alph === 'A-Z') return res.status(200).json(data)
-            if(alph === 'Z-A') return res.status(200).json(data.reverse())
-        }
-        if (score) {
-            let data = response.data.results.sort((a, b) => a.spoonacularScore - b.spoonacularScore)
-            if(score === 'asc') return res.status(200).json(data)
-            if(score === 'desc') return res.status(200).json(data.reverse())
-        }
         if(diet){
             if(diet === 'Vegetarian') {
                 let data = response.data.results.filter(el => el.vegetarian)
@@ -48,8 +37,7 @@ const getAllRecipes = async (req, res) => {
             let data = response.data.results.filter(el => el.diets.includes(diet.toLowerCase()))
             return res.status(200).json(data)
             
-        }
-        
+        } 
         res.status(200).json(response.data)
     } catch (error) {
         res.send(error.message)
@@ -84,19 +72,38 @@ const getRecipeInfo = async (req, res) => {
     try {
         const { id } = req.params
         if(id){
-            const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}`)
-            const { title, image, dishTypes, diets, summary, spoonacularScore, healthScore, instructions } = response.data
-            var obj = {
-                title, 
-                image, 
-                dishTypes, 
-                diets, 
-                summary, 
-                spoonacularScore, 
-                healthScore, 
-                instructions
+            if(id.toString().length < 7){
+                const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}`)
+                const { title, image, dishTypes, diets, summary, spoonacularScore, healthScore, instructions } = response.data
+                let obj = {
+                    title, 
+                    image, 
+                    dishTypes, 
+                    diets, 
+                    summary, 
+                    spoonacularScore, 
+                    healthScore, 
+                    instructions
+                }
+                res.status(200).json(obj)
+            } else {
+                const response = await Recipe.findByPk(
+                    id,
+                    {include: Diet}
+                    )
+                const { title, summary, spoonacularScore, healthScore, instructions, diets } = response.dataValues
+                const dietsForFront = []
+                diets.map(el => dietsForFront.push(el.name))
+                let obj = {
+                    title, 
+                    summary, 
+                    spoonacularScore,
+                    healthScore, 
+                    instructions, 
+                    diets: dietsForFront
+                }
+                res.status(200).json(obj)
             }
-            res.status(200).json(obj)
         }
     } catch (error) {
         res.send(error.message)
@@ -116,19 +123,39 @@ const getDietTypes = async (req, res) => {
 // post new recipe
 const postRecipe = async (req, res) => {
     try {
-        const { name, summary, score, healthScore, instructions, diets } = req.body
-        if(name && summary){
+        const { title, summary, spoonacularScore, healthScore, instructions, diets } = req.body
+        var newDiets = [...new Set(diets)]
+        console.log(newDiets)
+        if(title && summary){
             const newRecipe = await Recipe.create({
-                name,
+                title,
                 summary,
-                score, 
+                spoonacularScore, 
                 healthScore, 
-                instructions,
-                diets
+                instructions
             })
-            return res.status(200).json(newRecipe)
+            newDiets.forEach(async(el) => {
+                let recipeDiets = await Diet.findOne({
+                    where: {
+                        name: el
+                    }
+                })
+                await newRecipe.addDiet(recipeDiets)
+            });
+            return res.status(200).send('Recipe created successfully!')
         }
         res.sendStatus(400)
+    } catch (error) {
+        res.send(error.message)
+    }
+}
+
+// get user recipes from db
+const getUserRecipes = async (req, res) => {
+    try {
+        const data = await Recipe.findAll()
+        res.status(200).json(data)
+        
     } catch (error) {
         res.send(error.message)
     }
@@ -139,5 +166,6 @@ module.exports = {
     getRecipes,
     getRecipeInfo,
     getDietTypes,
-    postRecipe
+    postRecipe,
+    getUserRecipes
 }

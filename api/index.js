@@ -22,41 +22,63 @@ const { conn } = require('./src/db.js');
 const { Diet } = require('./src/db.js')
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
-    Diet.create({
-      name: 'Gluten Free'
+    Diet.findOrCreate({
+      where: {
+        name: 'Gluten Free'
+      }
     }),
-    Diet.create({
-      name: 'Ketogenic'
+    Diet.findOrCreate({
+      where: {
+        name: 'Ketogenic'
+      }
     }),
-    Diet.create({
-      name: 'Vegetarian'
+    Diet.findOrCreate({
+      where: {
+        name: 'Vegetarian'
+      }
     }),
-    Diet.create({
-      name: 'Lacto-Vegetarian'
+    Diet.findOrCreate({
+      where: {
+        name: 'Lacto-Vegetarian'
+      }
     }),
-    Diet.create({
-      name: 'Ovo-Vegetarian'
+    Diet.findOrCreate({
+      where: {
+        name: 'Ovo-Vegetarian'
+      }
     }),
-    Diet.create({
-      name: 'Vegan'
+    Diet.findOrCreate({
+      where: {
+        name: 'Vegan'
+      }
     }),
-    Diet.create({
-      name: 'Pescetarian'
+    Diet.findOrCreate({
+      where: {
+        name: 'Pescetarian'
+      }
     }),
-    Diet.create({
-      name: 'Paleo'
+    Diet.findOrCreate({
+      where: {
+        name: 'Paleo'
+      }
     }),
-    Diet.create({
-      name: 'Primal'
+    Diet.findOrCreate({
+      where: {
+        name: 'Primal'
+      }
     }),
-    Diet.create({
-      name: 'Low FODMAP'
+    Diet.findOrCreate({
+      where: {
+        name: 'Low FODMAP'
+      }
     }),
-    Diet.create({
-      name: 'Whole30'
+    Diet.findOrCreate({
+      where: {
+        name: 'Whole30'
+      }
     })
   });
 });

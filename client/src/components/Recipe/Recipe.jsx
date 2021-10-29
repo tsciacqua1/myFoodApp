@@ -8,13 +8,13 @@ const Recipe = (props) => {
 
     return (
         <div className='recipeItem'>
-            <Link to={`/recipes/${data.id}`}>
+            <Link to={`/recipes/${data.id}`} className='link'>
                 <img src={data.image} alt={data.id} />
-                <p>{data.title}</p>
+                <p className='title'>{data.title}</p>
                 <span>
                     {data.diets?.map((el) => {
                         return (
-                            <li>{el}</li>
+                            <li key={data.id}>* {el}</li>
                         )
                     })}
                 </span>

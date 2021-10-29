@@ -1,5 +1,5 @@
-div{
-    background-image: url('https://wallpaperscute.com/wp-content/uploads/2020/09/Food-Wallpaper.jpg');
+.landingpage{
+    background-image: url('../../img/background.jpg');
     min-height: 100%;
     min-width: 1024px;
     width: 100%;
