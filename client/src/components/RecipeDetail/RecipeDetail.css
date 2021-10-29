@@ -113,7 +113,7 @@
     width: auto;
     top: 7.5cm;
     left: -4.5cm;
-    border-left: 5px solid black;
+    border-left: 5px solid rgb(8, 8, 8);
     border-radius: 5px;
     padding-left: 0.5cm;
 }
