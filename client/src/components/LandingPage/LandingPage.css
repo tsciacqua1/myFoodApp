@@ -10,6 +10,10 @@
 }
 
 .landingpage a{
+    text-decoration: nonex;
+}
+
+.landingpage button{
     text-decoration: none;
     cursor: pointer;
     font-size: 115px;
@@ -20,10 +24,9 @@
     top: 400px;
     position: relative;
     text-shadow: 0px 11px 20px white;
-    
 }
 
-.landingpage a:hover{
+.landingpage button:hover{
     color: seagreen;
     text-shadow: 0px 11px 20px #CE5937;
 }

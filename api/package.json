@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -L",
-    "test": "mocha -w ./tests/**/*.spec.js"
+    "test": "mocha -w ./tests/**/*.spec.js",
+    "devtest": "jest"
   },
   "author": "Henry",
   "license": "ISC",
@@ -28,9 +29,16 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "jest": "^27.3.1",
     "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
-    "supertest": "^6.0.1",
+    "supertest": "^6.1.6",
     "supertest-session": "^4.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }

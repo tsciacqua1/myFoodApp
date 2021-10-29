@@ -4,7 +4,9 @@ import './LandingPage.css'
 const LandingPage = () => {
     return (
             <div className='landingpage'>
-                <a href="/home/!">HOMEPAGE</a>
+                <a href='/home/!'>
+                    <button>HOMEPAGE</button>
+                </a>
             </div>
     )
 }
