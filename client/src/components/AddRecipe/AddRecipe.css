@@ -84,6 +84,11 @@ textarea {
 
 #title{
     padding: 0 0 0 0;
+    border: 0.5px solid #b3aca7;
+}
+
+#title input, #title input:focus{
+  color: #726659;
 }
 
 #title::placeholder{

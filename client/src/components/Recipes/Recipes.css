@@ -64,6 +64,11 @@ input[type="text"] {
     border: none;
     text-decoration: none;
     outline: none;
+    color: white;
+}
+
+.td input::placeholder{
+    color: rgb(235, 235, 235);
 }
 
 #s-cover
